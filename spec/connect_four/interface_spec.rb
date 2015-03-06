@@ -2,7 +2,8 @@ require 'connect_four'
 
 describe Interface do
 	let (:fake_stdout)  {double("stdout")}
-	allow(fake_stdout).to receive(:puts)
+	let (:player1) {double("Player", :name => "Bob")}
+	# allow(fake_stdout).to receive(:puts)
 	let (:session) {double("Session")}
 	# player1 = Player.new("Bob", "X")
 	# player2 = Player.new("Joe", "O")
@@ -19,16 +20,17 @@ describe Interface do
 
 	describe "#get_player_name" do
 		it "prompts players to enter their names" do
-			expect(:fake_stdout).to have_received(:puts).with("Player X name:\n")
+			expect(fake_stdout).to receive(:puts).with("Player X name:")
 			interface.get_player_name("X")
 		end
 	end
 
-	# describe "#get_coin_call" do
-	# 	it "prompts players to answer HEADS or TAILS" do
-	# 		expect{interface.get_coin_call(player1)}.to output("\nBob, heads or tails?\n").to_stdout
-	# 	end
-	# end
+	describe "#get_coin_call" do
+		it "prompts players to answer HEADS or TAILS" do
+			allow(fake_stdout).to receive(:puts)
+			expect{interface.get_coin_call(player1)}.to output("\nBob, heads or tails?").to_stdout
+		end
+	end
 
 	# describe "#get_high score" do
 	# 	it "prompts players to enter the number of rounds" do
