@@ -28,7 +28,7 @@ describe Interface do
 	describe "#get_coin_call" do
 		it "prompts players to answer HEADS or TAILS" do
 			allow(fake_stdout).to receive(:puts)
-			expect{interface.get_coin_call(player1)}.to output("\nBob, heads or tails?").to_stdout
+			expect{interface.get_coin_call(player1)}.to(:puts).with("\nBob, heads or tails?").to(fake_stdout)
 		end
 	end
 
