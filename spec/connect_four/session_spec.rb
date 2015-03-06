@@ -25,7 +25,7 @@ describe Session do
 			expect(session.player2).to be_an_instance_of(Player)
 		end
 
-		xit "gets a high score" do
+		it "gets a high score" do
 			allow(:interface).to receive(:get_high_score).and_return(3)
 			expect(session.high_score).to eql(2)
 		end
