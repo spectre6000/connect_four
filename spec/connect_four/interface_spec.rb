@@ -1,10 +1,10 @@
-require "spec_helper"
+require 'connect_four'
 
 describe Interface do
 	let (:fake_stdout)  {double("stdout")}
-	allow(fake_stdout).to receive(:puts)
+	# allow(fake_stdout).to receive(:puts)
 	let (:session) {double("Session")}
-	player1 = Player.new("Bob", "X")
+	# player1 = Player.new("Bob", "X")
 	# player2 = Player.new("Joe", "O")
 	let (:interface) { Interface.new(session, fake_stdout) }
 	# game = Game.new(player1, player2, interface)
@@ -19,7 +19,7 @@ describe Interface do
 
 	describe "#get_player_name" do
 		it "prompts players to enter their names" do
-			expect(fake_stdout).to have_received(:puts).with("Player X name:\n")
+			expect(:fake_stdout).to have_received(:puts).with("Player X name:\n")
 			interface.get_player_name("X")
 		end
 	end

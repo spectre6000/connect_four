@@ -1,4 +1,4 @@
-require board.rb
+require 'connect_four'
 
 describe Board do
 	session = Session.new
