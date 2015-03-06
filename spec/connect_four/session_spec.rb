@@ -2,6 +2,7 @@ require 'connect_four'
 
 describe Session do
 	let (:interface) {double("Interface")}
+	let (:player1) {double("Player")}
 	session = Session.new
 	# player1 = Player.new("Bob", "X")
 	# player2 = Player.new("Joe", "O")
@@ -32,13 +33,13 @@ describe Session do
 
 	describe "#play" do
 
-		xit "creates a game if neither player has won" do
+		it "creates a game if neither player has won" do
 			allow(session.player1).to receive(:score).and_return(0)
-			allow(:interface).to receive(:get_high_score).and_return(3)
+			allow(interface).to receive(:get_high_score).and_return(3)
 			expect(session.games.length).to eql(1)
 		end
 
-		xit "does not create a game if either player has won" do
+		it "does not create a game if either player has won" do
 			allow(player1).to receive(:score).and_return(2)
 			allow(interface).to receive(:get_high_score).and_return(3)
 			expect(session.games.length).to eql(0)

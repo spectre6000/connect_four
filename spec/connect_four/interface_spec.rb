@@ -2,7 +2,7 @@ require 'connect_four'
 
 describe Interface do
 	let (:fake_stdout)  {double("stdout")}
-	# allow(fake_stdout).to receive(:puts)
+	allow(fake_stdout).to receive(:puts)
 	let (:session) {double("Session")}
 	# player1 = Player.new("Bob", "X")
 	# player2 = Player.new("Joe", "O")
