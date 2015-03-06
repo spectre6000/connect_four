@@ -1,3 +1,5 @@
+require "spec_helper"
+
 describe Interface do
 	let (:fake_stdout)  {double("stdout")}
 	allow(fake_stdout).to receive(:puts)
