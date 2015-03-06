@@ -1,15 +1,21 @@
 require 'connect_four'
 
 describe Game do
-	session = Session.new
-	player1 = Player.new("Bob", "X")
-	player2 = Player.new("Joe", "O")
-	interface = Interface.new(session)
-	game = Game.new(player1, player2, interface)
-	board = Board.new(game)
+	let (:player1) {double("Player")}
+	let (:player2) {double("Player")}
+	let (:fake_stdout) {double("stdout")}
+	let (:interface) {double("Interface", :out => "fake_stdout")}
+	let (:game) {Game.new(player1, player2, interface)}
+	# session = Session.new
+	# player1 = Player.new("Bob", "X")
+	# player2 = Player.new("Joe", "O")
+	# interface = Interface.new(session)
+	# game = Game.new(player1, player2, interface)
+	# board = Board.new(game)
 
 	describe "#new" do
-		xit "creates an instance of Game" do
+		it "creates an instance of Game" do
+			allow(fake_stdout).to receive(:puts)
 			expect(game).to be_an_instance_of(Game)
 		end
 		xit "selects a player to go first" do
