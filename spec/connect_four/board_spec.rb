@@ -1,10 +1,9 @@
 require 'connect_four'
 
 describe Board do
-  let(:player1) { double("Player", :mark => "X")}
-  let(:player2) { double("Player", :mark => "O")}
-  let(:game) { double("Game", :player1 => "player1", :player2 => "player2") }
-  let(:board) { Board.new(game) }
+  let(:board) { Board.new }
+  let(:player1) { instance_double(Player, :mark => "X") }
+  let(:player2) { instance_double(Player, :mark => "O") }
 
   describe "#new" do
     it "creates an instance of Board" do
@@ -17,16 +16,6 @@ describe Board do
   end
 
   describe "#win?" do
-    before do
-      allow(game).to receive(:is_the_game_over?)
-    end
-
-    it "checks if the game is over" do
-      board.win?
-
-      expect(game).to have_received(:is_the_game_over?)
-    end
-
     it "throws false for no win" do
       board.move(1, player1)
       board.move(1, player2)

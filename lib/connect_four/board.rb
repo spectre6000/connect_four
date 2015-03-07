@@ -1,8 +1,7 @@
 class Board
-  attr_accessor :spaces, :game, :win
+  attr_accessor :spaces, :win
 
-  def initialize(game)
-    @game = game
+  def initialize
     @win = false
     @spaces = []
 
@@ -17,8 +16,6 @@ class Board
   end
 
   def win?
-    game.is_the_game_over?
-
     WINNERS.each do |x|
       #get the various combinations of spots for win
       fours = [ @spaces[x[0]], @spaces[x[1]], @spaces[x[2]], @spaces[x[3]] ]
