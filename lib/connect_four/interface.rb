@@ -1,5 +1,5 @@
 class Interface
-	#Takes the place of the standard I/O to enable testing
+#Takes the place of the standard I/O to enable testing
 
 	def initialize(session, out = $stdout)
 		#ties to session

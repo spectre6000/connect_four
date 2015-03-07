@@ -11,13 +11,12 @@ class Board
 
 	def win?
 		winners.each do |x|
-			#get the various combinations of spots for win
-			fours = [ @spaces[x[0]], @spaces[x[1]], @spaces[x[2]], @spaces[x[3]] ]
-			if fours.all? { |space| space[1] != " " }
-				#check to see if they're all the same and not just blank
-			  if fours[0][1] == fours[1][1] && fours[1][1] == fours[2][1] && fours[2][1] == fours[3][1]
-			    @win = true
-			  end
+		#get the various combinations of spots for win
+		fours = [ @spaces[x[0]], @spaces[x[1]], @spaces[x[2]], @spaces[x[3]] ]
+		if fours.all? { |space| space[1] != " " }
+			#check to see if they're all the same and not just blank
+			if fours[0][1] == fours[1][1] && fours[1][1] == fours[2][1] && fours[2][1] == fours[3][1]
+				@win = true
 			end
 		end
 	end
@@ -60,7 +59,7 @@ class Board
 	def make_board
 		#seven columns, six rows
 		7.times do |x|
-			x += 1
+		x += 1
 			6.times do |y|
 				y += 1
 				#column number in first position, blank or players' mark in second

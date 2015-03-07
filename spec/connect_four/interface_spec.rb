@@ -32,32 +32,32 @@ describe Interface do
 		end
 	end
 
-	# describe "#get_high score" do
-	# 	it "prompts players to enter the number of rounds" do
-	# 		expect{interface.get_high_score}.to output("Best out of how many?\n").to_stdout
-	# 	end
-	# end
+	describe "#get_high score" do
+		it "prompts players to enter the number of rounds" do
+			expect{interface.get_high_score}.to output("Best out of how many?\n").to_stdout
+		end
+	end
 
-	# describe "#move" do
-	# 	it "prompts player for where to place a piece" do
-	# 		expect{interface.move(player1.name)}.to output("Bob, where would you like to place your piece?\n").to_stdout
-	# 	end
-	# end
+	describe "#move" do
+		it "prompts player for where to place a piece" do
+			expect{interface.move(player1.name)}.to output("Bob, where would you like to place your piece?\n").to_stdout
+		end
+	end
 
-	# describe "#print_board" do
-	# 	it "displays the game board" do
-	# 		# player2 = Player.new("Joe", "O")
-	# 		game = Game.new(player1, player2, interface)
-	# 		board = Board.new(game)
-	# 		expect{interface.print_board(board)}.to output("| | | | | | | |\n| | | | | | | |\n| | | | | | | |\n| | | | | | | |\n| | | | | | | |\n| | | | | | | |\n").to_stdout
-	# 	end
-	# end
+	describe "#print_board" do
+		it "displays the game board" do
+			# player2 = Player.new("Joe", "O")
+			game = Game.new(player1, player2, interface)
+			board = Board.new(game)
+			expect{interface.print_board(board)}.to output("| | | | | | | |\n| | | | | | | |\n| | | | | | | |\n| | | | | | | |\n| | | | | | | |\n| | | | | | | |\n").to_stdout
+		end
+	end
 
-	# describe "#winner" do
-	# 	it "displays the winner" do
-	# 		expect{interface.winner(player1)}.to output("Bob wins!\n").to_stdout
-	# 	end
-	# end
+	describe "#winner" do
+		it "displays the winner" do
+			expect{interface.winner(player1)}.to output("Bob wins!\n").to_stdout
+		end
+	end
 
 end
 

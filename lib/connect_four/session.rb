@@ -30,14 +30,14 @@ private
 	end
 
  	def get_players
- 		#actual initialization of players
- 		@player1 = Player.new(@interface.get_player_name("X"), "X")
- 		@player2 = Player.new(@interface.get_player_name("O"), "O")
+	 	#actual initialization of players
+	 	@player1 = Player.new(@interface.get_player_name("X"), "X")
+	 	@player2 = Player.new(@interface.get_player_name("O"), "O")
  	end
 
  	def high_score_i
- 		#sets high score, rounds to appropriate minimum to score a winning set
- 		@high_score = (@interface.get_high_score / 2.0).ceil
+	 	#sets high score, rounds to appropriate minimum to score a winning set
+	 	@high_score = (@interface.get_high_score / 2.0).ceil
  	end
 
 end
