@@ -17,6 +17,16 @@ describe Board do
   end
 
   describe "#win?" do
+    before do
+      allow(game).to receive(:is_the_game_over?)
+    end
+
+    it "checks if the game is over" do
+      board.win?
+
+      expect(game).to have_received(:is_the_game_over?)
+    end
+
     it "throws false for no win" do
       board.move(1, player1)
       board.move(1, player2)
