@@ -55,7 +55,6 @@ describe Board do
       board.move(4, player2)
       board.move(4, player1)
       board.win?
-
       expect(board.win).to eql(true)
     end
   end

@@ -2,8 +2,8 @@ require 'connect_four'
 
 describe Game do
   let (:fake_stdout) {double("stdout")}
-  let (:player1) {double("Player")}
-  let (:player2) {double("Player")}
+  let (:player1) {instance_double("Player")}
+  let (:player2) {instance_double("Player")}
   let (:interface) {double("Interface", :out => "fake_stdout")}
   let (:game) {Game.new(player1, player2, interface)}
   # session = Session.new
@@ -15,7 +15,11 @@ describe Game do
 
   describe "#new" do
     it "creates an instance of Game" do
-      allow(interface).to receive(:puts)
+      allow(interface).to receive(:get_coin_call)
+      allow(interface).to receive(:print_board)
+      allow(player1).to receive(:name)
+      allow(player2).to receive(:name)
+      # allow(interface).to receive(:move).with(player1.name)
       expect(game).to be_an_instance_of(Game)
     end
   #   xit "selects a player to go first" do
