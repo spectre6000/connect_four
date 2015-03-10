@@ -52,7 +52,7 @@ describe Interface do
 
   describe "#winner" do
     it "displays the winner" do
-      allow(player1).to receive(:score).and_return(4)
+      allow(player1).to receive(:score)
       expect(fake_stdout).to receive(:puts).with("Bob wins!")
       interface.winner(player1)
     end
