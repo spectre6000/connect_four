@@ -3,8 +3,8 @@ require 'connect_four'
 describe Session do
   let (:fake_stdout) {double("stdout")}
   let (:interface) {double("Interface", :out => "fake_stdout")}
-  let (:player1) {double("Player")}
-  session = Session.new
+  # let (:player1) {double("Player")}
+  let (:session) { Session.new }
   # player1 = Player.new("Bob", "X")
   # player2 = Player.new("Joe", "O")
   # interface = Interface.new(session, fake_stdout)

@@ -9,7 +9,7 @@ class Game
   @interface = interface
   #decides who goes first per game
   @turn = coin_toss
-  @board = Board.new(self)
+  @board = Board.new
   play
   end
 

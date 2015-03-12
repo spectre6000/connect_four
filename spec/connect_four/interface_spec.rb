@@ -4,7 +4,7 @@ describe Interface do
   let (:fake_stdout) {double("$STDOUT")}
   let (:player1) {instance_double("Player", :name => "Bob")}
   let (:session) {instance_double("Session")}
-  let (:board) {instance_double("Board")}
+  let (:board) {instance_double("Board")}#, :spaces => [[1," "],[1," "],[1," "],[1," "],[1," "],[1," "],[2," "],[2," "],[2," "],[2," "],[2," "],[2," "],[3," "],[3," "],[3," "],[3," "],[3," "],[3," "],[4," "],[4," "],[4," "],[4," "],[4," "],[4," "],[5," "],[5," "],[5," "],[5," "],[5," "],[5," "],[6," "],[6," "],[6," "],[6," "],[6," "],[6," "],[7," "],[7," "],[7," "],[7," "],[7," "],[7," "]])}
   let (:interface) { Interface.new(session, fake_stdout) }
 
 
@@ -43,20 +43,20 @@ describe Interface do
   end
 
   describe "#print_board" do
-    xit "displays the game board" do
+    it "displays the game board" do
       allow(board).to receive(:spaces).and_return(" ")
-      expect(fake_stdout).to receive(:puts).with("| | | | | | | |\n| | | | | | | |\n| | | | | | | |\n| | | | | | | |\n| | | | | | | |\n| | | | | | | |\n")
+      expect(fake_stdout).to receive(:print).with("| | | | | | | |\n| | | | | | | |\n| | | | | | | |\n| | | | | | | |\n| | | | | | | |\n| | | | | | | |\n")
       interface.print_board(board)
     end
   end
 
-  describe "#winner" do
-    it "displays the winner" do
-      allow(player1).to receive(:score)
-      expect(fake_stdout).to receive(:puts).with("Bob wins!")
-      interface.winner(player1)
-    end
-  end
+  # describe "#winner" do
+  #   it "displays the winner" do
+  #     allow(player1).to receive(:score)
+  #     expect(fake_stdout).to receive(:puts).with("Bob wins!")
+  #     interface.winner(player1)
+  #   end
+  # end
 
 end
 
