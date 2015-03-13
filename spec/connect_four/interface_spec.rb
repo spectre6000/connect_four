@@ -2,9 +2,11 @@ require 'connect_four'
 
 describe Interface do
   let (:fake_stdout) {double("$STDOUT")}
-  let (:player1) {instance_double("Player", :name => "Bob")}
+  # let (:player1) {instance_double("Player", :name => "Bob")}
+  let (:player1) { Player.new("Bob", "X")}
   let (:session) {instance_double("Session")}
-  let (:board) {instance_double("Board")}#, :spaces => [[1," "],[1," "],[1," "],[1," "],[1," "],[1," "],[2," "],[2," "],[2," "],[2," "],[2," "],[2," "],[3," "],[3," "],[3," "],[3," "],[3," "],[3," "],[4," "],[4," "],[4," "],[4," "],[4," "],[4," "],[5," "],[5," "],[5," "],[5," "],[5," "],[5," "],[6," "],[6," "],[6," "],[6," "],[6," "],[6," "],[7," "],[7," "],[7," "],[7," "],[7," "],[7," "]])}
+  # let (:board) {instance_double("Board")}#, :spaces => [[1," "],[1," "],[1," "],[1," "],[1," "],[1," "],[2," "],[2," "],[2," "],[2," "],[2," "],[2," "],[3," "],[3," "],[3," "],[3," "],[3," "],[3," "],[4," "],[4," "],[4," "],[4," "],[4," "],[4," "],[5," "],[5," "],[5," "],[5," "],[5," "],[5," "],[6," "],[6," "],[6," "],[6," "],[6," "],[6," "],[7," "],[7," "],[7," "],[7," "],[7," "],[7," "]])}
+  let (:board) { Board.new }
   let (:interface) { Interface.new(session, fake_stdout) }
 
 
@@ -44,19 +46,18 @@ describe Interface do
 
   describe "#print_board" do
     it "displays the game board" do
-      allow(board).to receive(:spaces).and_return(" ")
       expect(fake_stdout).to receive(:print).with("| | | | | | | |\n| | | | | | | |\n| | | | | | | |\n| | | | | | | |\n| | | | | | | |\n| | | | | | | |\n")
       interface.print_board(board)
     end
   end
 
-  # describe "#winner" do
-  #   it "displays the winner" do
-  #     allow(player1).to receive(:score)
-  #     expect(fake_stdout).to receive(:puts).with("Bob wins!")
-  #     interface.winner(player1)
-  #   end
-  # end
+  describe "#winner" do
+    it "displays the winner" do
+      # allow(player1).to receive{:score}.with{ :+ }.with(1)
+      expect(fake_stdout).to receive(:puts).with("Bob wins!")
+      interface.winner(player1)
+    end
+  end
 
 end
 

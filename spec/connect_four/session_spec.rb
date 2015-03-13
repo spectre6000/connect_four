@@ -1,18 +1,13 @@
 require 'connect_four'
 
 describe Session do
-  let (:fake_stdout) {double("stdout")}
-  let (:interface) {double("Interface", :out => "fake_stdout")}
-  # let (:player1) {double("Player")}
+  let (:fake_stdout) {double("$STDOUT")}
+  let (:interface) {instance_double("Interface", :out => "fake_stdout")}
   let (:session) { Session.new }
-  # player1 = Player.new("Bob", "X")
-  # player2 = Player.new("Joe", "O")
-  # interface = Interface.new(session, fake_stdout)
-  # game = Game.new(player1, player2, interface)
-  # board = Board.new(game)
 
   describe "#new" do
     it "creates an instance of Session" do
+      allow(fake_stdout).to receive{:puts}.with(instance_of(string))
       expect(session).to be_an_instance_of(Session)
     end
   end
