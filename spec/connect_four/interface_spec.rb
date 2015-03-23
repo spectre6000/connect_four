@@ -1,12 +1,10 @@
 require 'connect_four'
 
 describe Interface do
-  let (:fake_stdout) {double("$STDOUT")}
-  # let (:player1) {instance_double("Player", :name => "Bob")}
-  let (:player1) { Player.new("Bob", "X")}
-  let (:session) {instance_double("Session")}
-  # let (:board) {instance_double("Board")}#, :spaces => [[1," "],[1," "],[1," "],[1," "],[1," "],[1," "],[2," "],[2," "],[2," "],[2," "],[2," "],[2," "],[3," "],[3," "],[3," "],[3," "],[3," "],[3," "],[4," "],[4," "],[4," "],[4," "],[4," "],[4," "],[5," "],[5," "],[5," "],[5," "],[5," "],[5," "],[6," "],[6," "],[6," "],[6," "],[6," "],[6," "],[7," "],[7," "],[7," "],[7," "],[7," "],[7," "]])}
-  let (:board) { Board.new }
+  let (:fake_stdout) {double("$STDOUT", :puts => true)}
+  let (:player1) {instance_double(Player, :name => "Bob")}
+  let (:session) {instance_double(Session)}
+  let (:board) {instance_double(Board)}#, :spaces => [[1," "],[1," "],[1," "],[1," "],[1," "],[1," "],[2," "],[2," "],[2," "],[2," "],[2," "],[2," "],[3," "],[3," "],[3," "],[3," "],[3," "],[3," "],[4," "],[4," "],[4," "],[4," "],[4," "],[4," "],[5," "],[5," "],[5," "],[5," "],[5," "],[5," "],[6," "],[6," "],[6," "],[6," "],[6," "],[6," "],[7," "],[7," "],[7," "],[7," "],[7," "],[7," "]])}
   let (:interface) { Interface.new(session, fake_stdout) }
 
 
@@ -30,7 +28,7 @@ describe Interface do
     end
   end
 
-  describe "#get_high score" do
+  describe "#get_high score." do
     it "prompts players to enter the number of rounds" do
       expect(fake_stdout).to receive(:puts).with("Best out of how many?")
       interface.get_high_score
@@ -46,6 +44,7 @@ describe Interface do
 
   describe "#print_board" do
     it "displays the game board" do
+      allow(board).to receive(:spaces).and_return([[1," "],[1," "],[1," "],[1," "],[1," "],[1," "],[2," "],[2," "],[2," "],[2," "],[2," "],[2," "],[3," "],[3," "],[3," "],[3," "],[3," "],[3," "],[4," "],[4," "],[4," "],[4," "],[4," "],[4," "],[5," "],[5," "],[5," "],[5," "],[5," "],[5," "],[6," "],[6," "],[6," "],[6," "],[6," "],[6," "],[7," "],[7," "],[7," "],[7," "],[7," "],[7," "]])
       expect(fake_stdout).to receive(:print).with("| | | | | | | |\n| | | | | | | |\n| | | | | | | |\n| | | | | | | |\n| | | | | | | |\n| | | | | | | |\n")
       interface.print_board(board)
     end
@@ -53,7 +52,7 @@ describe Interface do
 
   describe "#winner" do
     it "displays the winner" do
-      # allow(player1).to receive{:score}.with{ :+ }.with(1)
+      allow(session).to receive(:play)
       expect(fake_stdout).to receive(:puts).with("Bob wins!")
       interface.winner(player1)
     end

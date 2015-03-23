@@ -1,13 +1,13 @@
 require 'connect_four'
 
 describe Session do
-  let (:fake_stdout) {double("$STDOUT")}
+  let (:fake_stdout) {double("$STDOUT", :puts => true)}
   let (:interface) {instance_double("Interface", :out => "fake_stdout")}
   let (:session) { Session.new }
 
   describe "#new" do
     it "creates an instance of Session" do
-      allow(fake_stdout).to receive{:puts}.with(instance_of(string))
+      allow(Interface).to receive(:new).with(session, fake_stdout).and_return(:interface)
       expect(session).to be_an_instance_of(Session)
     end
   end
@@ -22,7 +22,7 @@ describe Session do
   #   end
 
   #   it "gets a high score" do
-  #     allow(:interface).to receive(:get_high_score).and_return(3)
+  #     allow(interface).to receive(:get_high_score).and_return(3)
   #     expect(session.high_score).to eql(2)
   #   end
   # end
@@ -36,7 +36,7 @@ describe Session do
   #   end
 
   #   it "does not create a game if either player has won" do
-  #     allow(player1).to receive(:score).and_return(2)
+  #     allow(session.player1).to receive(:score).and_return(2)
   #     allow(interface).to receive(:get_high_score).and_return(3)
   #     expect(session.games.length).to eql(0)
   #   end

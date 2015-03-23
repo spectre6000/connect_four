@@ -37,6 +37,8 @@ class Game
     end
     #changes player back in the case of a win
     change_player
+    #increments player score
+    @turn.score +=1
     #states who won
     @interface.winner(@turn)
   end

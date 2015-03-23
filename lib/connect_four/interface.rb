@@ -31,9 +31,9 @@ class Interface
     gets.chomp
   end
 
-  def winner(name)
-    @out.puts "#{name.name} wins!"
-    name.score +=1
+  def winner(player)
+    @out.puts "#{player.name} wins!"
+    # player.score +=1
     @session.play
   end
 
