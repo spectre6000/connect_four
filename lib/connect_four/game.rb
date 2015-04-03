@@ -38,7 +38,7 @@ class Game
     #changes player back in the case of a win
     change_player
     #increments player score
-    @turn.score +=1
+    @turn.score.+(1)
     #states who won
     @interface.winner(@turn)
   end
@@ -47,8 +47,10 @@ class Game
     #decides who goes first in a given round
     #picks a player at random
     calling = caller
+    print calling
     #checks to see if the randomly picked
     if @interface.get_coin_call(calling) == flip
+      print flip
       @turn = calling
     else
       @turn = [@player1, @player2].delete(calling)

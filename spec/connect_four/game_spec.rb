@@ -1,63 +1,49 @@
 require 'connect_four'
 
 describe Game do
-  let (:fake_stdout) {double("stdout")}
-  let (:player1) {instance_double("Player")}
-  let (:player2) {instance_double("Player")}
-  let (:interface) {double("Interface", :out => "fake_stdout")}
-  let (:game) {Game.new(player1, player2, interface)}
-  # session = Session.new
-  # player1 = Player.new("Bob", "X")
-  # player2 = Player.new("Joe", "O")
-  # interface = Interface.new(session)
-  # game = Game.new(player1, player2, interface)
-  # board = Board.new(game)
+  let (:fake_interface) { instance_double("Interface") }
+  let (:fake_player1) { instance_double("Player") }
+  let (:fake_player2) { instance_double("Player") }
+  let (:fake_board) { instance_double("Board") }
+  let (:game) {Game.new(fake_player1, fake_player2, fake_interface)}
+
+  before do
+    srand(1)
+    allow(fake_interface).to receive(:get_coin_call).and_return("HEADS")
+    allow(Board).to receive(:new).and_return(fake_board)
+    allow(fake_board).to receive(:win).and_return(true)
+    allow(fake_player1).to receive(:score)
+    allow(fake_player1.score).to receive(:+).with(1)
+    allow(fake_player2).to receive(:score)
+    allow(fake_player2.score).to receive(:+).with(1)
+    allow(fake_interface).to receive(:winner).with(fake_player1)
+    allow(fake_interface).to receive(:winner).with(fake_player2)
+  end
 
   describe "#new" do
     it "creates an instance of Game" do
-      allow(interface).to receive(:get_coin_call)
-      allow(interface).to receive(:print_board)
-      allow(player1).to receive(:name)
-      allow(player2).to receive(:name)
-      # allow(interface).to receive(:move).with(player1.name)
       expect(game).to be_an_instance_of(Game)
     end
-  #   xit "selects a player to go first" do
-  #     allow_any_instance_of(Interface).to receive(:get_coin_call).and_return("HEADS")
-  #     expect(game.turn).to be_an_instance_of(Player)
-  #   end
-  #   xit "gets correct player from matching coin toss" do
-  #     srand(1) # player2 calls; coin flips to TAILS
-  #     allow_any_instance_of(Interface).to receive(:get_coin_call).and_return("TAILS")
-  #     # expect([player1, player2]).to include(subject.turn)
-  #     expect(game.turn).to eql(player2)
-  #   end
-  #   xit "gets correct player from missed coin toss" do
-  #     srand(1) # player2 calls; coin flips to TAILS
-  #     allow_any_instance_of(Interface).to receive(:get_coin_call).and_return("HEADS")
-  #     expect(game.turn).to eql(player1)
-  #   end
+    it "selects a player to go first" do
+      expect([fake_player1, fake_player2]).to include(game.turn)
+    end
+    it "gets correct player from matching coin toss" do
+#      srand(1) # player2 calls; coin flips to HEADS
+ #     allow(fake_interface).to receive(:get_coin_call).with(fake_player2).and_return("HEADS")
+      expect(game.turn).to eql(fake_player1)
+    end
+    # it "gets correct player from missed coin toss" do
+    #   srand(1) # player1 calls; coin flips to HEADS
+    #   print "here #{fake_player2}"
+    #   allow(fake_interface).to receive(:get_coin_call).with(fake_player2).and_return("TAILS")
+    #   expect(game.turn).to eql(fake_player1)
+    # end
   end
   # describe "#play" do
-  #   xit "correctly places a piece in the first column" do
-  #     allow_any_instance_of(Interface).to receive(:move).and_return(1)
-  #     board.move(1,"X")
-  #     expect(["X"]).to include(board.spaces[0][1])
-  #   end
-  #   xit "correctly places a piece in the second column" do
-  #     allow_any_instance_of(Interface).to receive(:move).and_return(1)
-  #     board.move(2,"O")
-  #     expect(["O"]).to include(board.spaces[6][1])
-  #   end
-  #   xit "correctly places a second piece in the first column" do
-  #     allow_any_instance_of(Interface).to receive(:move).and_return(1)
-  #     board.move(1,"O")
-  #     expect(["O"]).to include(board.spaces[1][1])
-  #   end
-  #   xit "takes turns" do
-  #     game.turn = player1
+  #   it "takes turns" do
+  #     game.turn = fake_player1
   #     game.change_player
-  #     expect(game.turn).to eql(player2)
+  #     expect(game.turn).to eql(fake_player2)
   #   end
   # end
 end

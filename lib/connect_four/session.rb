@@ -20,7 +20,7 @@ class Session
     end
   end
 
-private
+# private
 
   def setup
     #establishes player names, marks, and initializes objects
